@@ -6,7 +6,6 @@ namespace Assignment1.Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    [Table("Song")]
     public partial class Song
     {
         public int SongId { get; set; }
@@ -21,8 +20,10 @@ namespace Assignment1.Models
 
         [Required]
         [StringLength(50)]
-        public string Band { get; set; }
+        public string Rating { get; set; }
 
-        public virtual Band Band1 { get; set; }
+        public int Fk_BandId { get; set; }
+
+        public virtual Band Band { get; set; }
     }
 }

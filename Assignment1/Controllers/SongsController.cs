@@ -17,7 +17,7 @@ namespace Assignment1.Controllers
         // GET: Songs
         public ActionResult Index()
         {
-            var songs = db.Songs.Include(s => s.Band1);
+            var songs = db.Songs.Include(s => s.Band);
             return View(songs.ToList());
         }
 
@@ -39,7 +39,7 @@ namespace Assignment1.Controllers
         // GET: Songs/Create
         public ActionResult Create()
         {
-            ViewBag.SongId = new SelectList(db.Bands, "BandId", "Name");
+            ViewBag.Fk_BandId = new SelectList(db.Bands, "BandId", "Name");
             return View();
         }
 
@@ -48,7 +48,7 @@ namespace Assignment1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "SongId,Name,Length,Band")] Song song)
+        public ActionResult Create([Bind(Include = "SongId,Name,Length,Rating,Fk_BandId")] Song song)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +57,7 @@ namespace Assignment1.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.SongId = new SelectList(db.Bands, "BandId", "Name", song.SongId);
+            ViewBag.Fk_BandId = new SelectList(db.Bands, "BandId", "Name", song.Fk_BandId);
             return View(song);
         }
 
@@ -73,7 +73,7 @@ namespace Assignment1.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.SongId = new SelectList(db.Bands, "BandId", "Name", song.SongId);
+            ViewBag.Fk_BandId = new SelectList(db.Bands, "BandId", "Name", song.Fk_BandId);
             return View(song);
         }
 
@@ -82,7 +82,7 @@ namespace Assignment1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "SongId,Name,Length,Band")] Song song)
+        public ActionResult Edit([Bind(Include = "SongId,Name,Length,Rating,Fk_BandId")] Song song)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +90,7 @@ namespace Assignment1.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.SongId = new SelectList(db.Bands, "BandId", "Name", song.SongId);
+            ViewBag.Fk_BandId = new SelectList(db.Bands, "BandId", "Name", song.Fk_BandId);
             return View(song);
         }
 

@@ -8,7 +8,7 @@ namespace Assignment1.Models
     public partial class DbModel : DbContext
     {
         public DbModel()
-            : base("name=DbModel1")
+            : base("name=DbModel")
         {
         }
 
@@ -26,8 +26,14 @@ namespace Assignment1.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Band>()
-                .Property(e => e.MemberCount)
+                .Property(e => e.YearFormed)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<Band>()
+                .HasMany(e => e.Songs)
+                .WithRequired(e => e.Band)
+                .HasForeignKey(e => e.Fk_BandId)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<Song>()
                 .Property(e => e.Name)
@@ -38,12 +44,8 @@ namespace Assignment1.Models
                 .IsUnicode(false);
 
             modelBuilder.Entity<Song>()
-                .Property(e => e.Band)
+                .Property(e => e.Rating)
                 .IsUnicode(false);
-
-            modelBuilder.Entity<Song>()
-                .HasOptional(e => e.Band1)
-                .WithRequired(e => e.Song);
         }
     }
 }

@@ -8,6 +8,12 @@ namespace Assignment1.Models
 
     public partial class Band
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Band()
+        {
+            Songs = new HashSet<Song>();
+        }
+
         public int BandId { get; set; }
 
         [Required]
@@ -20,8 +26,9 @@ namespace Assignment1.Models
 
         [Required]
         [StringLength(50)]
-        public string MemberCount { get; set; }
+        public string YearFormed { get; set; }
 
-        public virtual Song Song { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Song> Songs { get; set; }
     }
 }

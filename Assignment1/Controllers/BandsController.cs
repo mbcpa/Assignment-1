@@ -17,8 +17,7 @@ namespace Assignment1.Controllers
         // GET: Bands
         public ActionResult Index()
         {
-            var bands = db.Bands.Include(b => b.Song);
-            return View(bands.ToList());
+            return View(db.Bands.ToList());
         }
 
         // GET: Bands/Details/5
@@ -39,7 +38,6 @@ namespace Assignment1.Controllers
         // GET: Bands/Create
         public ActionResult Create()
         {
-            ViewBag.BandId = new SelectList(db.Songs, "SongId", "Name");
             return View();
         }
 
@@ -48,7 +46,7 @@ namespace Assignment1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "BandId,Name,Genre,MemberCount")] Band band)
+        public ActionResult Create([Bind(Include = "BandId,Name,Genre,YearFormed")] Band band)
         {
             if (ModelState.IsValid)
             {
@@ -57,7 +55,6 @@ namespace Assignment1.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.BandId = new SelectList(db.Songs, "SongId", "Name", band.BandId);
             return View(band);
         }
 
@@ -73,7 +70,6 @@ namespace Assignment1.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.BandId = new SelectList(db.Songs, "SongId", "Name", band.BandId);
             return View(band);
         }
 
@@ -82,7 +78,7 @@ namespace Assignment1.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "BandId,Name,Genre,MemberCount")] Band band)
+        public ActionResult Edit([Bind(Include = "BandId,Name,Genre,YearFormed")] Band band)
         {
             if (ModelState.IsValid)
             {
@@ -90,7 +86,6 @@ namespace Assignment1.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.BandId = new SelectList(db.Songs, "SongId", "Name", band.BandId);
             return View(band);
         }
 
