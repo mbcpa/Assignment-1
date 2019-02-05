@@ -5,7 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Song Listings</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -13,10 +13,10 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.Band.Name)
+            @Html.DisplayNameFor(model => model.Name)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Name)
+            @Html.DisplayNameFor(model => model.Band.Name)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Length)
@@ -41,7 +41,7 @@
         <td>
             @Html.DisplayFor(modelItem => item.Rating)
         </td>
-        <td>
+        <td style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color: black;">
             @Html.ActionLink("Edit", "Edit", new { id=item.SongId }) |
             @Html.ActionLink("Details", "Details", new { id=item.SongId }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.SongId })
