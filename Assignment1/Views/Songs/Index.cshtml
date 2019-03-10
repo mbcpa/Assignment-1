@@ -41,11 +41,14 @@
         <td>
             @Html.DisplayFor(modelItem => item.Rating)
         </td>
-        <td style="font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; color: black;">
-            @Html.ActionLink("Edit", "Edit", new { id=item.SongId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.SongId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.SongId })
-        </td>
+        @if (Request.IsAuthenticated)
+        {
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.SongId }) |
+                @Html.ActionLink("Details", "Details", new { id = item.SongId }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.SongId })
+            </td>
+        }
     </tr>
 }
 
