@@ -10,12 +10,12 @@ namespace Assignment1.Controllers
     {
         public ActionResult Index()
         {
-            return View();
+            return View("Index View");
         }
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "About";
 
             return View();
         }
