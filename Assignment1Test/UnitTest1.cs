@@ -32,7 +32,7 @@ namespace Assignment1Test
             ViewResult result = controller.Index() as ViewResult;
 
             //Assert
-            Assert.AreEqual("Index View",result.ViewName);
+            Assert.AreEqual("Index",result.ViewName);
         }
 
         [TestMethod]

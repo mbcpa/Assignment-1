@@ -10,7 +10,7 @@ namespace Assignment1.Controllers
     {
         public ActionResult Index()
         {
-            return View("Index View");
+            return View("Index");
         }
 
         public ActionResult About()

@@ -7,18 +7,34 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using Assignment1.Models;
+using Moq;
 
 namespace Assignment1.Controllers
 {
     public class SongsController : Controller
     {
-        private DbModel db = new DbModel();
+        //NEW DB CONNECTION SYSTEM
+        IMoqSongs db;
+        //private DbModel db = new DbModel();
+
+
+        //Controller for real data
+        public SongsController()
+        {
+            this.db = new MoqData();
+        }
+
+        //Controller for mock data being passed.
+        public SongsController(IMoqSongs moqDb)
+        {
+            this.db = moqDb;
+        }
 
         // GET: Songs
         public ActionResult Index()
         {
             var songs = db.Songs.Include(s => s.Band);
-            return View(songs.ToList());
+            return View("Index",songs.ToList());
         }
 
         // GET: Songs/Details/5
@@ -28,7 +44,7 @@ namespace Assignment1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Song song = db.Songs.Find(id);
+            Song song = db.Songs.SingleOrDefault(s => s.SongId == id);
             if (song == null)
             {
                 return HttpNotFound();
@@ -52,8 +68,10 @@ namespace Assignment1.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Songs.Add(song);
-                db.SaveChanges();
+                //db.Songs.Add(song);
+                //db.SaveChanges();
+
+                db.Save(song);
                 return RedirectToAction("Index");
             }
 
@@ -68,7 +86,7 @@ namespace Assignment1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Song song = db.Songs.Find(id);
+            Song song = db.Songs.SingleOrDefault(s => s.SongId == id);
             if (song == null)
             {
                 return HttpNotFound();
@@ -86,8 +104,10 @@ namespace Assignment1.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(song).State = EntityState.Modified;
-                db.SaveChanges();
+                //db.Entry(song).State = EntityState.Modified;
+                //db.SaveChanges();
+
+                db.Save(song);
                 return RedirectToAction("Index");
             }
             ViewBag.Fk_BandId = new SelectList(db.Bands, "BandId", "Name", song.Fk_BandId);
@@ -101,7 +121,7 @@ namespace Assignment1.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Song song = db.Songs.Find(id);
+            Song song = db.Songs.SingleOrDefault(s => s.SongId == id);
             if (song == null)
             {
                 return HttpNotFound();
@@ -114,9 +134,12 @@ namespace Assignment1.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Song song = db.Songs.Find(id);
-            db.Songs.Remove(song);
-            db.SaveChanges();
+            Song song = db.Songs.SingleOrDefault(s => s.SongId == id);
+            
+            //db.Songs.Remove(song);
+            //db.SaveChanges();
+
+            db.Delete(song);
             return RedirectToAction("Index");
         }
 
