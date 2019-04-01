@@ -42,14 +42,14 @@ namespace Assignment1.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error");
             }
             Song song = db.Songs.SingleOrDefault(s => s.SongId == id);
             if (song == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Error");
             }
-            return View(song);
+            return View("Detail",song);
         }
 
         // GET: Songs/Create
@@ -76,7 +76,7 @@ namespace Assignment1.Controllers
             }
 
             ViewBag.Fk_BandId = new SelectList(db.Bands, "BandId", "Name", song.Fk_BandId);
-            return View(song);
+            return View("Create",song);
         }
 
         // GET: Songs/Edit/5

@@ -7,9 +7,13 @@
 
 <h2>Song Listings</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
+@if (User.Identity.IsAuthenticated)
+{
+    <p>
+        @Html.ActionLink("Create New", "Create")
+    </p>
+}
+
 <table class="table">
     <tr>
         <th>
@@ -27,29 +31,30 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Band.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Length)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Rating)
-        </td>
-        @if (Request.IsAuthenticated)
-        {
+    @foreach (var item in Model)
+    {
+        <tr>
             <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.SongId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.SongId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.SongId })
+                @Html.DisplayFor(modelItem => item.Band.Name)
             </td>
-        }
-    </tr>
-}
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Length)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Rating)
+            </td>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.SongId }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.SongId }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.SongId })
+                </td>
+            }
+        </tr>
+    }
 
 </table>

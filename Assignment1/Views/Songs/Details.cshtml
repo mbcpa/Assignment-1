@@ -46,6 +46,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.SongId }) |
+    @if (User.Identity.IsAuthenticated) { Html.ActionLink("Edit", "Edit", new { id = Model.SongId }) }
     @Html.ActionLink("Back to List", "Index")
 </p>

@@ -28,9 +28,9 @@ namespace Assignment1Test
             //Fake band and fake song lists
             band = new List<Band>
             {
-                new Band {BandId = 1000, Name = "Band1", Genre = "Genre1", YearFormed = "YearFormed1"},
-                new Band {BandId = 1001, Name = "Band2", Genre = "Genre2", YearFormed = "YearFormed2"},
-                new Band {BandId = 1002, Name = "Band3", Genre = "Genre3", YearFormed = "YearFormed3"}
+                new Band {BandId = 900, Name = "Band1", Genre = "Genre1", YearFormed = "YearFormed1"},
+                new Band {BandId = 901, Name = "Band2", Genre = "Genre2", YearFormed = "YearFormed2"},
+                new Band {BandId = 902, Name = "Band3", Genre = "Genre3", YearFormed = "YearFormed3"}
             };
 
             songs = new List<Song>
@@ -51,7 +51,15 @@ namespace Assignment1Test
 
         /* SONG CONTROLLER UNIT TESTS */
         [TestMethod]
-        public void IndexViewLoad()
+        public void ContructorLoads()
+        {
+            SongsController test = new SongsController();
+
+            Assert.IsNotNull(test);
+        }
+
+        [TestMethod]
+        public void IndexViewLoads()
         {
    
             //Act
@@ -61,5 +69,59 @@ namespace Assignment1Test
             Assert.AreEqual("Index", result.ViewName);
 
         }
+
+        [TestMethod]
+        public void DetailsViewNullValue()
+        {
+
+            //Act
+            RedirectToRouteResult result = songController.Details(null) as RedirectToRouteResult;
+
+            //Assert
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void DetailsViewNotNullValue()
+        {
+            //Act
+            ViewResult result = songController.Details(900) as ViewResult;
+
+            //Assert
+            Assert.AreEqual("Detail", result.ViewName);
+        }
+
+        [TestMethod]
+        public void DetailsViewSong()
+        {
+            //Act
+            var result = ((ViewResult)songController.Details(900)).Model;
+
+            //Assert
+            Assert.AreEqual(songs.SingleOrDefault(s => s.SongId == 900), result);
+        }
+
+        [TestMethod]
+        public void DetailsViewEqualReturns()
+        {
+            //Act
+            ViewResult result = songController.Details(867) as ViewResult;
+            ViewResult result_2 = songController.Details(null) as ViewResult;
+
+            //Assert
+            Assert.AreEqual(result, result_2);
+        }
+
+        [TestMethod]
+        public void CreateViewLoads()
+        {
+            //Act
+            ViewResult result = songController.Create() as ViewResult;
+
+            //Assert
+            Assert.AreEqual("Create",result.ViewName);
+        }
+
+        
     }
 }
