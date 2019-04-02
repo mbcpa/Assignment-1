@@ -37,7 +37,8 @@ namespace Assignment1Test
             {
                 new Song {SongId = 900, Name = "Song1", Length = "1", Rating = "1"},
                 new Song {SongId = 901, Name = "Song2", Length = "2", Rating = "2"},
-                new Song {SongId = 902, Name = "Song3", Length = "3", Rating = "3"}
+                new Song {SongId = 902, Name = "Song3", Length = "3", Rating = "3"},
+                new Song {SongId = 903}
             };
 
             //Mock object for controller
@@ -76,9 +77,10 @@ namespace Assignment1Test
 
             //Act
             RedirectToRouteResult result = songController.Details(null) as RedirectToRouteResult;
+            var resArray = result.RouteValues.ToArray();
 
             //Assert
-            Assert.IsNotNull(result);
+            Assert.AreEqual("Error", resArray[0].Value);
         }
 
         [TestMethod]
@@ -122,6 +124,153 @@ namespace Assignment1Test
             Assert.AreEqual("Create",result.ViewName);
         }
 
+        [TestMethod]
+        public void CreateViewNullValue()
+        {
+            songController.ModelState.AddModelError("Key Name", "900");
+            //Act
+            ViewResult result = songController.Create() as ViewResult;
+
+            //Assert
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void CreateViewPassValue()
+        {
+            //Act
+            RedirectToRouteResult result = songController.Create(songs[0]) as RedirectToRouteResult;
+            var resArray = result.RouteValues.ToArray();
+
+            //Assert
+            Assert.AreEqual("Index", resArray[0].Value);
+        }
+
+        [TestMethod]
+        public void CreateViewPassValueError()
+        {
+            //Act
+            songController.ModelState.AddModelError("Key Name", "123");
+            ViewResult result = songController.Create(songs[0]) as ViewResult;
+
+            //Assert
+            Assert.AreEqual("Create",result.ViewName);
+        }
+
+        [TestMethod]
+        public void DeleteViewLoads()
+        {
+            //Act
+            ViewResult result = songController.Delete(900) as ViewResult;
+
+            //Assert
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void DeleteViewNullValue()
+        {
+            //Act
+            ViewResult result = songController.Delete(null) as ViewResult;
+
+            //Assert
+            Assert.AreEqual("Error", result.ViewName);
+        }
+
+        [TestMethod]
+        public void DeleteViewUnlistedId()
+        {
+            //Act
+            ViewResult result = songController.Delete(867) as ViewResult;
+
+            //Assert
+            Assert.AreEqual("Error", result.ViewName);
+        }
+
+        [TestMethod]
+        public void DeleteConfirmedLoads()
+        {
+            RedirectToRouteResult result = songController.DeleteConfirmed(900) as RedirectToRouteResult;
+
+            Assert.IsNotNull(result);
+        }
+
+        [TestMethod]
+        public void DeleteConfirmedRouteValueCheck()
+        {
+            RedirectToRouteResult result = songController.DeleteConfirmed(900) as RedirectToRouteResult;
+            var resArray = result.RouteValues.ToArray();
+
+            //Assert
+            Assert.AreEqual("Index", resArray[0].Value);
+        }
+
+        [TestMethod]
+        public void EditViewLoads()
+        {
+            //Act
+            ViewResult result = songController.Edit(900) as ViewResult;
+
+            //Assert
+            Assert.AreEqual("Edit", result.ViewName);
+        }
+
+        [TestMethod]
+        public void EditViewNullIdentifier()
+        {
+            //Act - NULLABLE INT
+            int? mynum = null;
+            RedirectToRouteResult result = songController.Edit(mynum) as RedirectToRouteResult;
+
+            //Array of RouteValues from result
+            var resArray = result.RouteValues.ToArray();
+
+            //Assert
+            Assert.AreEqual("Error", resArray[0].Value);
+        }
+
+        [TestMethod]
+        public void EditViewPassSong()
+        {
+            //Act
+            RedirectToRouteResult result = songController.Edit(songs[0]) as RedirectToRouteResult;
+            var resArray = result.RouteValues.ToArray();
+
+            //Assert
+            Assert.AreEqual("Index", resArray[0].Value);
+        }
+
+        [TestMethod]
+        public void EditViewPassSongError()
+        {
+            //Act
+            songController.ModelState.AddModelError("Key Name", "900");
+            ViewResult result = songController.Edit(songs[0]) as ViewResult;
+
+            //Assert
+            Assert.AreEqual("Edit", result.ViewName);
+        }
+
+        [TestMethod]
+        public void EditViewNullSong()
+        {
+            //Act
+            RedirectToRouteResult result = songController.Edit(1234) as RedirectToRouteResult;
+            var resArray = result.RouteValues.ToArray();
+
+            //Assert
+            Assert.AreEqual("Error", resArray[0].Value);
+        }
+
+        [TestMethod]
+        public void DisposingTest()
+        {
+            //Act
+            songController.Dispose();
+
+            //Useless unit test? *66.67% covered method
+        }
         
+
     }
 }

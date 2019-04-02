@@ -56,7 +56,7 @@ namespace Assignment1.Controllers
         public ActionResult Create()
         {
             ViewBag.Fk_BandId = new SelectList(db.Bands, "BandId", "Name");
-            return View();
+            return View("Create");
         }
 
         // POST: Songs/Create
@@ -84,15 +84,15 @@ namespace Assignment1.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return RedirectToAction("Error");
             }
             Song song = db.Songs.SingleOrDefault(s => s.SongId == id);
             if (song == null)
             {
-                return HttpNotFound();
+                return RedirectToAction("Error");
             }
             ViewBag.Fk_BandId = new SelectList(db.Bands, "BandId", "Name", song.Fk_BandId);
-            return View(song);
+            return View("Edit",song);
         }
 
         // POST: Songs/Edit/5
@@ -111,7 +111,7 @@ namespace Assignment1.Controllers
                 return RedirectToAction("Index");
             }
             ViewBag.Fk_BandId = new SelectList(db.Bands, "BandId", "Name", song.Fk_BandId);
-            return View(song);
+            return View("Edit",song);
         }
 
         // GET: Songs/Delete/5
@@ -119,12 +119,12 @@ namespace Assignment1.Controllers
         {
             if (id == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return View("Error");
             }
             Song song = db.Songs.SingleOrDefault(s => s.SongId == id);
             if (song == null)
             {
-                return HttpNotFound();
+                return View("Error");
             }
             return View(song);
         }
