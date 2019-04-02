@@ -49,7 +49,7 @@ namespace Assignment1.Controllers
             {
                 return RedirectToAction("Error");
             }
-            return View("Detail",song);
+            return View("Details",song);
         }
 
         // GET: Songs/Create

@@ -90,7 +90,7 @@ namespace Assignment1Test
             ViewResult result = songController.Details(900) as ViewResult;
 
             //Assert
-            Assert.AreEqual("Detail", result.ViewName);
+            Assert.AreEqual("Details", result.ViewName);
         }
 
         [TestMethod]
