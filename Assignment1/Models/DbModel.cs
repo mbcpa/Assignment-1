@@ -8,7 +8,7 @@ namespace Assignment1.Models
     public partial class DbModel : DbContext
     {
         public DbModel()
-            : base("name=DbModel")
+            : base("name=DefaultConnection")
         {
         }
 

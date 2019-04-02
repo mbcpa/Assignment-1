@@ -1,17 +1,12 @@
-@import url("https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,700italic,400,300,700");
-/*!
- * bootswatch v3.4.1
- * Homepage: http://bootswatch.com
- * Copyright 2012-2019 Thomas Park
- * Licensed under MIT
- * Based on Bootstrap
-*/
 /*!
  * Bootstrap v3.4.1 (https://getbootstrap.com/)
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
+a{
+    color:black !important;
+}
 html {
     font-family: sans-serif;
     -ms-text-size-adjust: 100%;
@@ -56,9 +51,7 @@ template {
     display: none;
 }
 
-a {
-    background-color: transparent;
-}
+
 
     a:active,
     a:hover {
@@ -6450,7 +6443,7 @@ button.list-group-item-success {
     button.list-group-item-success.active:hover,
     a.list-group-item-success.active:focus,
     button.list-group-item-success.active:focus {
-        color: #fff;
+        color: #333333;
         background-color: #43ac6a;
         border-color: #43ac6a;
     }
@@ -6484,7 +6477,7 @@ button.list-group-item-info {
     button.list-group-item-info.active:hover,
     a.list-group-item-info.active:focus,
     button.list-group-item-info.active:focus {
-        color: #fff;
+        color: #333;
         background-color: #5bc0de;
         border-color: #5bc0de;
     }
@@ -6518,7 +6511,7 @@ button.list-group-item-warning {
     button.list-group-item-warning.active:hover,
     a.list-group-item-warning.active:focus,
     button.list-group-item-warning.active:focus {
-        color: #fff;
+        color: #333;
         background-color: #e99002;
         border-color: #e99002;
     }
@@ -6552,7 +6545,7 @@ button.list-group-item-danger {
     button.list-group-item-danger.active:hover,
     a.list-group-item-danger.active:focus,
     button.list-group-item-danger.active:focus {
-        color: #fff;
+        color: #333;
         background-color: #f04124;
         border-color: #f04124;
     }
@@ -8353,7 +8346,7 @@ input[type="checkbox"] {
 
     .pagination > .active > a,
     .pagination > .active > span {
-        color: #fff;
+        color: #333;
     }
 
     .pagination > li > a,

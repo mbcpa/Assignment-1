@@ -48,7 +48,7 @@
             </td>
             @if (User.Identity.IsAuthenticated)
             {
-                <td>
+                <td style="color:black !important;">
                     @Html.ActionLink("Edit", "Edit", new { id = item.SongId }) |
                     @Html.ActionLink("Details", "Details", new { id = item.SongId }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.SongId })

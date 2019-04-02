@@ -232,6 +232,8 @@
     <Content Include="Content\Site.css" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\albumcollection - FTP.pubxml" />
+    <None Include="Properties\PublishProfiles\albumcollection - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\assignmenttest - FTP.pubxml" />
     <None Include="Properties\PublishProfiles\assignmenttest - Web Deploy.pubxml" />
     <None Include="Properties\PublishProfiles\midterm - FTP.pubxml" />
