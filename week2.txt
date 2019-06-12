@@ -1,0 +1,7 @@
+1. 	Visual Studio 2019. Broke a lot of community package that we're used to. 
+	Requires extra training and reading of the documentation
+
+2.	Trained based on a past assignment. Figured out new needed dependancies and updated packages.
+
+3. 	Uploaded to Github. Kaban project board updated. I suggest starting the tutorials as the next phase of the sprint
+	will be slow to code and won't give many deliverables.

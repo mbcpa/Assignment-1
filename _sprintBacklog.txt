@@ -1,0 +1,8 @@
+//May 24th, 2019
+//Online tech tutorials
+//highest-priority items from the product backlog to be completed within a sprint 
+
+- vs 2019: updating package, framework, etc
+- updating code dependancy
+- unit testing
+- bug-free frame for website

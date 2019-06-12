@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Album Collection</title>
+    <title>@ViewBag.Title - Tech Tutorials</title>
     @Styles.Render("~/Content/css")
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="../../Content/bootstrap.css" />
@@ -18,13 +18,13 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Album Collection", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Tech Tutorials", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Songs", "Index", "Songs")</li>
-                    <li>@Html.ActionLink("Bands", "Index", "Bands")</li>
+                    <li>@Html.ActionLink("Tutorials", "Index", "Songs")</li>
+                    <li>@Html.ActionLink("Categories", "Index", "Bands")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
@@ -34,8 +34,8 @@
         @RenderBody()
         <hr />
         <footer style="text-align: center;">
-            <p>&copy; @DateTime.Now.Year - Album Collection</p>
-            <p>Michael Brownlow - 200366717 - COMP2084 / ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year - Tech Tutorials</p>
+            <p>Georgian College - 2019</p>
         </footer>
     </div>
 

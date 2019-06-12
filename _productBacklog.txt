@@ -1,0 +1,9 @@
+//May 24th, 2019
+//Online Tech Tutorials
+//list of features prioritized by business value 
+
+- Visually Appealing and correct names
+- Login authentication updated and working
+- Allow posting of forms 
+- Determine legitimacy of photo and video upload
+- 
